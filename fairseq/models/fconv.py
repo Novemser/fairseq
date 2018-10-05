@@ -714,6 +714,15 @@ def fconv_iwslt_de_en(args):
     base_architecture(args)
 
 
+@register_model_architecture('fconv', 'fconv_giga')
+def fconv_giga(args):
+    args.encoder_embed_dim = 256
+    args.encoder_layers = '[(256, 3)] * 6'
+    args.decoder_embed_dim = 256
+    args.decoder_layers = '[(256, 3)] * 6'
+    args.decoder_out_embed_dim = 256
+    base_architecture(args)
+
 @register_model_architecture('fconv', 'fconv_wmt_en_ro')
 def fconv_wmt_en_ro(args):
     args.decoder_out_embed_dim = getattr(args, 'decoder_out_embed_dim', 512)
